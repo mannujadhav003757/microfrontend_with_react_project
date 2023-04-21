@@ -156,7 +156,7 @@ export default function Album() {
           color="textSecondary"
           component="p"
         >
-          Something here to give he footer a purpose  yes here is footer!
+          Something here to give hefooter a purpose  yes here is footer!
         </Typography>
         <Copyright />
       </footer>
