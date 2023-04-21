@@ -20,14 +20,22 @@ jobs:
           - run  : npm run build
             name: ACTIONS_ALLOW_UNSECURE_COMMANDS
           - run: echo 'ACTIONS_ALLOW_UNSECURE_COMMANDS=true' >> $GITHUB_ENV
-          - uses : aws-actions/configure-aws-credentials@v1
+          - name: Configure AWS credentials
+            uses: aws-actions/configure-aws-credentials@v1
             with:
-              AWS_ACCESS_KEY_ID : ${{ secrets.AWS_ACCESS_KEY_ID }}
-              AWS_SECRET_ACESS_KEY : ${{ secrets.AWS_SECRET_ACESS_KEY }}
-              aws-region: ${{ secrets.AWS_REGION}}
-              
-          - run  : aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/container/latest
-           # env :
-          #    AWS_ACCESS_KEY_ID : ${{ secrets.AWS_ACCESS_KEY_ID }}
-           #   AWS_SECRET_ACESS_KEY : ${{ secrets.AWS_SECRET_ACESS_KEY }}
-            #  aws-region: ${{ secrets.AWS_REGION}}
+              aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+              aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+              aws-region: us-east-1
+          - name: Deploy
+            run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/container/latest          
+
+
+
+
+
+
+
+
+
+
+          
