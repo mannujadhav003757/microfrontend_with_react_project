@@ -17,7 +17,8 @@ const prodConfig = {
            and then hash of the contents of the file.
        -  This is done for caching issues 
         */
-        filename: '[name].[contenhash].js'
+        filename: '[name].[contenhash].js',
+        publicPath: '/container/latest/'
     },
     plugins:[
         new ModuleFederationPlugIn({
