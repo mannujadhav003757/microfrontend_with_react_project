@@ -18,10 +18,13 @@ const commonConfig = require('./webpack.common')
 const packageJson = require('../package.json')
 const devConfig ={
     mode : 'development',
+    output : {
+        publicPath: "http://localhost:5001/"
+    },
     devServer :{
         port: 5001,
         historyApiFallback:{
-            index : 'index.html',
+            index : '/index.html',
         },
     },
         plugins:[

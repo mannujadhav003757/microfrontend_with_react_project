@@ -12,32 +12,33 @@ This is going to take some kind of HTML file inside of our project
 and inject couple of different script tags inside of it.
  */
 
-
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin')
 const commonConfig = require('./webpack.common')
 const packageJson = require('../package.json')
-
 const devConfig ={
     mode : 'development',
-    output :{
-        publicPath: 'http://localhost:5002/'
+    output: {
+        publicPath: "http://localhost:5003/"
     },
     devServer :{
-        port: 5002,
+        port: 5003,
         historyApiFallback:{
             index : '/index.html',
         },
     },
         plugins:[
             new ModuleFederationPlugin({
-                name:'container',
-                remotes:{
-                    marketing: 'marketing@http://localhost:5001/remoteEntry.js',
-                    auth: 'auth@http://localhost:5003/remoteEntry.js',
+                name:'auth',
+                filename:'remoteEntry.js',
+                exposes:{
+                    './AuthApp':'./src/bootstrap'
                 },
-                shared: packageJson.dependencies
+                shared:packageJson.dependencies
             }),
-            
+            new HtmlWebpackPlugin({
+                template:'./public/index.html'
+            })
         ]
     }
 
