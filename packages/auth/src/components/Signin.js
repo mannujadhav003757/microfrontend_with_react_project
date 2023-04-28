@@ -99,7 +99,7 @@ export default function SignIn({ onSignIN }) {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={onSignIN()}
+            onClick={onSignIN}
           >
             Sign In
           </Button>

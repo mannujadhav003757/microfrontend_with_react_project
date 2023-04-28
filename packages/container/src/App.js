@@ -9,6 +9,7 @@ import { lazy, Suspense,useState } from "react";
 import Progress from "./components/Progress";
 const MarketingLazy = lazy(() => import('./components/MarketingApp'))
 const AuthLazy = lazy(() => import('./components/AuthApp'))
+const DashboardLazy = lazy(() => import('./components/DashboardApp'))
 
 
 // Here we create by default generate classname's using "ma" prefix
@@ -32,6 +33,7 @@ export default function App(){
         <Route path="/auth">
             <AuthLazy onSignIN={()=>setIsSignedIn(true)}/>
         </Route>
+        <Route path="/dashboard" component={DashboardLazy} />
         <Route path="/" component={MarketingLazy} />
     </Switch>
     </Suspense>

@@ -2,8 +2,8 @@ import React,{ useRef, useEffect } from 'react'
 import { mount } from "auth/AuthApp"
 import { useHistory } from 'react-router-dom'
 
-export default function AuthApp(onSignIN) {
-    const ref = useRef(null)
+export default function AuthApp({onSignIN}) {
+    const ref = React.useRef(null)
     const history = useHistory()
     useEffect(() => {
         const {onParentNavigate} = mount(ref.current,{
